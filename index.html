@@ -14,9 +14,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ═══════════════════════════════════════════
-       CSS RESET & VARIABLES
-    ═══════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -47,698 +44,339 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* ═══════════════════════════════════════════
-       APP SHELL
-    ═══════════════════════════════════════════ */
-    .app {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+    .app { min-height: 100vh; display: flex; flex-direction: column; }
 
-    /* ── SCREENS ── */
-    .screen {
-      display: none;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-    .screen.active {
-      display: flex;
-    }
+    .screen { display: none; flex-direction: column; min-height: 100vh; }
+    .screen.active { display: flex; }
 
-    /* ═══════════════════════════════════════════
-       HOME SCREEN
-    ═══════════════════════════════════════════ */
+    /* ── HOME ── */
     .home {
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-      position: relative;
-      overflow: hidden;
+      align-items: center; justify-content: center;
+      padding: 24px; position: relative; overflow: hidden;
     }
-
     .home::before {
-      content: '';
-      position: absolute;
-      top: -40%; left: -20%;
+      content: ''; position: absolute; top: -40%; left: -20%;
       width: 140%; height: 80%;
       background: radial-gradient(ellipse, rgba(78,205,196,0.15) 0%, transparent 70%);
       pointer-events: none;
     }
     .home::after {
-      content: '';
-      position: absolute;
-      bottom: -30%; right: -20%;
+      content: ''; position: absolute; bottom: -30%; right: -20%;
       width: 120%; height: 60%;
       background: radial-gradient(ellipse, rgba(255,107,53,0.1) 0%, transparent 70%);
       pointer-events: none;
     }
+    .home-content { position: relative; z-index: 1; text-align: center; max-width: 520px; }
 
-    .home-content {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      max-width: 520px;
-    }
-
-    .logo-mark {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .logo-mark svg {
-      width: 48px; height: 48px;
-    }
+    .logo-mark { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .logo-mark svg { width: 48px; height: 48px; }
     .logo-text {
-      font-family: var(--font-display);
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--accent-warm);
-      letter-spacing: -0.02em;
+      font-family: var(--font-display); font-size: 2.4rem; font-weight: 700;
+      color: var(--accent-warm); letter-spacing: -0.02em;
     }
-    .logo-text span {
-      color: var(--accent-cool);
-    }
+    .logo-text span { color: var(--accent-cool); }
 
     .home h2 {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: var(--text-muted);
-      margin-bottom: 40px;
-      line-height: 1.5;
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 500;
+      color: var(--text-muted); margin-bottom: 40px; line-height: 1.5;
     }
+    .home-actions { display: flex; flex-direction: column; gap: 16px; width: 100%; }
 
-    .home-actions {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      width: 100%;
-    }
-
+    /* ── BUTTONS ── */
     .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 18px 28px;
-      border: none;
-      border-radius: var(--radius);
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      text-decoration: none;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 18px 28px; border: none; border-radius: var(--radius);
+      font-family: var(--font-display); font-size: 1.15rem; font-weight: 600;
+      cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none;
     }
-    .btn:active {
-      transform: scale(0.97);
-    }
-    .btn svg {
-      width: 24px; height: 24px;
-      flex-shrink: 0;
-    }
-
+    .btn:active { transform: scale(0.97); }
+    .btn svg { width: 24px; height: 24px; flex-shrink: 0; }
     .btn-primary {
-      background: var(--accent-warm);
-      color: #fff;
+      background: var(--accent-warm); color: #fff;
       box-shadow: var(--shadow-md), 0 4px 0 0 #D9582B;
     }
-    .btn-primary:hover {
-      box-shadow: var(--shadow-lg), 0 4px 0 0 #D9582B;
-      transform: translateY(-2px);
-    }
-
+    .btn-primary:hover { box-shadow: var(--shadow-lg), 0 4px 0 0 #D9582B; transform: translateY(-2px); }
     .btn-secondary {
-      background: var(--bg-card);
-      color: var(--text);
-      box-shadow: var(--shadow-sm);
-      border: 2px solid rgba(45,27,20,0.06);
+      background: var(--bg-card); color: var(--text);
+      box-shadow: var(--shadow-sm); border: 2px solid rgba(45,27,20,0.06);
     }
-    .btn-secondary:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-2px);
-    }
-
-    .btn-small {
-      padding: 12px 20px;
-      font-size: 0.95rem;
-      border-radius: var(--radius-sm);
+    .btn-secondary:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+    .btn-small { padding: 12px 20px; font-size: 0.95rem; border-radius: var(--radius-sm); }
+    .btn-accent {
+      background: var(--accent-cool); color: #fff;
+      box-shadow: var(--shadow-md), 0 4px 0 0 #35A89F;
     }
 
-    /* floating shapes on home */
+    /* floating shapes */
     .float-shape {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.5;
-      animation: floatBob 6s ease-in-out infinite;
-      pointer-events: none;
+      position: absolute; border-radius: 50%; opacity: 0.5;
+      animation: floatBob 6s ease-in-out infinite; pointer-events: none;
     }
     .float-shape:nth-child(1) { width:80px;height:80px;background:var(--accent-pop);top:8%;left:5%;animation-delay:0s; }
     .float-shape:nth-child(2) { width:60px;height:60px;background:var(--accent-pink);top:15%;right:8%;animation-delay:1.5s;border-radius:30%; }
     .float-shape:nth-child(3) { width:50px;height:50px;background:var(--accent-cool);bottom:18%;left:10%;animation-delay:3s; }
     .float-shape:nth-child(4) { width:70px;height:70px;background:var(--accent-purple);bottom:12%;right:6%;animation-delay:4.5s;border-radius:35%; }
-
     @keyframes floatBob {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-18px) rotate(8deg); }
     }
 
-    /* ═══════════════════════════════════════════
-       SETUP SCREEN — Marker Compiler
-    ═══════════════════════════════════════════ */
-    .setup {
-      padding: 0;
-    }
-
+    /* ── SETUP ── */
+    .setup { padding: 0; }
     .setup-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 16px 20px;
-      background: var(--bg-card);
-      box-shadow: var(--shadow-sm);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      display: flex; align-items: center; gap: 12px;
+      padding: 16px 20px; background: var(--bg-card);
+      box-shadow: var(--shadow-sm); position: sticky; top: 0; z-index: 10;
     }
-    .setup-header h1 {
-      font-family: var(--font-display);
-      font-size: 1.3rem;
-      font-weight: 600;
-    }
+    .setup-header h1 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; }
     .back-btn {
-      width: 40px; height: 40px;
-      border: none;
-      border-radius: 50%;
-      background: var(--bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
+      width: 40px; height: 40px; border: none; border-radius: 50%;
+      background: var(--bg); display: flex; align-items: center; justify-content: center; cursor: pointer;
     }
-
-    .setup-body {
-      flex: 1;
-      padding: 20px;
-      overflow-y: auto;
-    }
+    .setup-body { flex: 1; padding: 20px; overflow-y: auto; }
 
     .info-banner {
       background: linear-gradient(135deg, rgba(78,205,196,0.12), rgba(167,139,250,0.12));
-      border: 2px solid rgba(78,205,196,0.2);
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-bottom: 24px;
-      line-height: 1.7;
-      font-size: 0.95rem;
+      border: 2px solid rgba(78,205,196,0.2); border-radius: var(--radius);
+      padding: 20px; margin-bottom: 24px; line-height: 1.7; font-size: 0.95rem;
     }
-    .info-banner strong {
-      color: var(--accent-cool);
-    }
+    .info-banner strong { color: var(--accent-cool); }
 
     .step-label {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 600;
+      margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
     }
     .step-num {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: var(--accent-warm);
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      font-weight: 700;
+      width: 28px; height: 28px; border-radius: 50%; background: var(--accent-warm);
+      color: #fff; display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; font-weight: 700;
     }
 
-    /* Phoneme card grid */
-    .phoneme-library {
-      margin-bottom: 28px;
-    }
-
-    .phoneme-tabs {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-    }
+    /* Phoneme tabs & grid */
+    .phoneme-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
     .phoneme-tab {
-      padding: 8px 16px;
-      border: 2px solid rgba(45,27,20,0.1);
-      border-radius: 100px;
-      background: var(--bg-card);
-      font-family: var(--font-body);
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
+      padding: 8px 16px; border: 2px solid rgba(45,27,20,0.1); border-radius: 100px;
+      background: var(--bg-card); font-family: var(--font-body); font-size: 0.85rem;
+      font-weight: 500; cursor: pointer; transition: all 0.2s;
     }
-    .phoneme-tab.active {
-      background: var(--accent-cool);
-      color: #fff;
-      border-color: var(--accent-cool);
-    }
+    .phoneme-tab.active { background: var(--accent-cool); color: #fff; border-color: var(--accent-cool); }
 
-    .phoneme-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
-      gap: 10px;
-    }
+    .phoneme-library { margin-bottom: 28px; }
+    .phoneme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 10px; }
 
     .phoneme-chip {
-      aspect-ratio: 1;
-      border: 2px solid rgba(45,27,20,0.08);
-      border-radius: var(--radius-sm);
-      background: var(--bg-card);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.2s;
-      position: relative;
-      user-select: none;
+      aspect-ratio: 1; border: 2px solid rgba(45,27,20,0.08); border-radius: var(--radius-sm);
+      background: var(--bg-card); display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;
+      cursor: pointer; transition: all 0.2s; position: relative; user-select: none;
     }
-    .phoneme-chip:hover {
-      border-color: var(--accent-cool);
-      transform: scale(1.05);
-    }
+    .phoneme-chip:hover { border-color: var(--accent-cool); transform: scale(1.05); }
     .phoneme-chip.selected {
-      background: var(--accent-cool);
-      color: #fff;
-      border-color: var(--accent-cool);
+      background: var(--accent-cool); color: #fff; border-color: var(--accent-cool);
       box-shadow: 0 2px 12px rgba(78,205,196,0.4);
     }
     .phoneme-chip .chip-order {
-      position: absolute;
-      top: 4px; right: 6px;
-      font-size: 0.6rem;
-      background: var(--accent-warm);
-      color: #fff;
-      width: 18px; height: 18px;
-      border-radius: 50%;
-      display: none;
-      align-items: center;
-      justify-content: center;
+      position: absolute; top: 4px; right: 6px; font-size: 0.6rem;
+      background: var(--accent-warm); color: #fff; width: 18px; height: 18px;
+      border-radius: 50%; display: none; align-items: center; justify-content: center;
     }
-    .phoneme-chip.selected .chip-order {
-      display: flex;
-    }
+    .phoneme-chip.selected .chip-order { display: flex; }
 
     /* Selected preview */
     .selected-preview {
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      padding: 20px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow-sm);
-      text-align: center;
-      min-height: 80px;
+      background: var(--bg-card); border-radius: var(--radius); padding: 20px;
+      margin-bottom: 24px; box-shadow: var(--shadow-sm); text-align: center; min-height: 80px;
     }
     .selected-preview-label {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 8px;
+      font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;
+      letter-spacing: 0.08em; margin-bottom: 8px;
     }
-    .selected-phonemes {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      min-height: 48px;
-    }
+    .selected-phonemes { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; min-height: 48px; }
     .selected-tag {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 14px;
+      display: flex; align-items: center; gap: 6px; padding: 8px 14px;
       background: linear-gradient(135deg, var(--accent-cool), var(--accent-purple));
-      color: #fff;
-      border-radius: 100px;
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 600;
+      color: #fff; border-radius: 100px; font-family: var(--font-display); font-size: 1.1rem; font-weight: 600;
     }
     .selected-tag .remove-tag {
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      border: none;
-      color: #fff;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
+      width: 20px; height: 20px; border-radius: 50%; background: rgba(255,255,255,0.3);
+      border: none; color: #fff; cursor: pointer; display: flex; align-items: center;
+      justify-content: center; font-size: 0.75rem;
     }
-    .empty-hint {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
+    .empty-hint { color: var(--text-muted); font-size: 0.9rem; }
 
-    /* Compile section */
-    .compile-section {
-      margin-top: 8px;
-    }
-
-    .compile-progress {
-      display: none;
-      margin-top: 16px;
-    }
-    .compile-progress.visible {
-      display: block;
-    }
-
-    .progress-bar-track {
-      height: 8px;
-      background: rgba(45,27,20,0.06);
-      border-radius: 100px;
-      overflow: hidden;
-      margin-bottom: 8px;
-    }
+    /* Compile */
+    .compile-section { margin-top: 8px; }
+    .compile-progress { display: none; margin-top: 16px; }
+    .compile-progress.visible { display: block; }
+    .progress-bar-track { height: 8px; background: rgba(45,27,20,0.06); border-radius: 100px; overflow: hidden; margin-bottom: 8px; }
     .progress-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent-cool), var(--accent-purple));
-      border-radius: 100px;
-      transition: width 0.3s ease;
-      width: 0%;
+      height: 100%; background: linear-gradient(90deg, var(--accent-cool), var(--accent-purple));
+      border-radius: 100px; transition: width 0.3s ease; width: 0%;
     }
-    .progress-text {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      text-align: center;
+    .progress-text { font-size: 0.85rem; color: var(--text-muted); text-align: center; }
+
+    /* custom input */
+    .custom-input-row { display: flex; gap: 8px; margin-bottom: 24px; }
+    .custom-input-row input {
+      flex: 1; padding: 12px 16px; border: 2px solid rgba(45,27,20,0.1);
+      border-radius: var(--radius-sm); font-family: var(--font-display); font-size: 1.1rem;
+      font-weight: 600; background: var(--bg-card); outline: none;
+    }
+    .custom-input-row input:focus { border-color: var(--accent-cool); }
+
+    /* ── CARDS SCREEN ── */
+    .cards-screen .setup-body { max-width: 750px; margin: 0 auto; }
+
+    .cards-actions {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 24px;
     }
 
-    /* ═══════════════════════════════════════════
-       AR SCANNER SCREEN
-    ═══════════════════════════════════════════ */
-    .scanner {
-      position: relative;
-      background: #000;
+    .card-item {
+      background: var(--bg-card); border-radius: var(--radius); padding: 16px;
+      box-shadow: var(--shadow-sm); margin-bottom: 16px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .card-item-preview {
+      width: 120px; height: 120px; flex-shrink: 0;
+      border-radius: var(--radius-sm); overflow: hidden;
+      border: 2px solid rgba(45,27,20,0.08);
+    }
+    .card-item-preview img { width: 100%; height: 100%; object-fit: contain; }
+    .card-item-info { flex: 1; }
+    .card-item-info h3 {
+      font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin-bottom: 4px;
+    }
+    .card-item-info p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; }
+    .card-item-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-icon {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px; border: 2px solid rgba(45,27,20,0.08); border-radius: 100px;
+      background: var(--bg); font-family: var(--font-body); font-size: 0.82rem;
+      font-weight: 500; cursor: pointer; transition: all 0.2s; color: var(--text);
+    }
+    .btn-icon:hover { border-color: var(--accent-cool); background: rgba(78,205,196,0.08); }
+    .btn-icon svg { width: 16px; height: 16px; }
+
+    /* ── DISPLAY MODE OVERLAY ── */
+    .display-overlay {
+      position: fixed; inset: 0; background: #fff; z-index: 200;
+      display: none; flex-direction: column; align-items: center; justify-content: center;
+    }
+    .display-overlay.visible { display: flex; }
+    .display-overlay-top {
+      position: absolute; top: 0; left: 0; width: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 20px; z-index: 10;
+    }
+    .display-nav-btn {
+      width: 48px; height: 48px; border-radius: 50%; border: 2px solid rgba(45,27,20,0.1);
+      background: var(--bg); display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .display-nav-btn:hover { border-color: var(--accent-cool); }
+    .display-nav-btn:disabled { opacity: 0.3; cursor: default; }
+    .display-counter {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--text-muted);
+    }
+    .display-card-img {
+      max-width: min(90vw, 500px); max-height: 70vh; object-fit: contain;
+      border: 3px solid var(--text); border-radius: var(--radius-sm);
+    }
+    .display-phoneme-label {
+      margin-top: 20px; font-family: var(--font-display); font-size: 2rem;
+      font-weight: 700; color: var(--accent-cool);
+    }
+    .display-hint {
+      margin-top: 8px; font-size: 0.85rem; color: var(--text-muted); text-align: center; padding: 0 20px;
     }
 
-    #ar-container {
-      width: 100vw;
-      height: 100vh;
-      position: relative;
-    }
+    /* ── AR SCANNER ── */
+    .scanner { position: relative; background: #000; }
+    #ar-container { width: 100vw; height: 100vh; position: relative; }
 
-    /* AR overlay UI */
     .ar-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 50;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; z-index: 50;
     }
-
     .ar-top-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      padding-top: max(12px, env(safe-area-inset-top));
-      pointer-events: auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px; padding-top: max(12px, env(safe-area-inset-top)); pointer-events: auto;
     }
-
     .ar-back-btn {
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(10px);
-      border: none;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+      border: none; color: #fff; display: flex; align-items: center;
+      justify-content: center; cursor: pointer;
     }
-
     .ar-word-display {
-      position: fixed;
-      bottom: 0; left: 0;
-      width: 100%;
-      padding: 0 16px 24px;
-      padding-bottom: max(24px, env(safe-area-inset-bottom));
-      pointer-events: auto;
-      z-index: 50;
+      position: fixed; bottom: 0; left: 0; width: 100%;
+      padding: 0 16px 24px; padding-bottom: max(24px, env(safe-area-inset-bottom));
+      pointer-events: auto; z-index: 50;
     }
-
     .word-card {
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(20px);
-      border-radius: var(--radius);
-      padding: 20px 24px;
-      box-shadow: var(--shadow-lg);
-      text-align: center;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);
+      border-radius: var(--radius); padding: 20px 24px;
+      box-shadow: var(--shadow-lg); text-align: center;
     }
-
     .word-card-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 6px;
+      font-size: 0.75rem; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 6px;
     }
-
     .built-word {
-      font-family: var(--font-display);
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: var(--text);
-      min-height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      letter-spacing: 0.04em;
+      font-family: var(--font-display); font-size: 2.6rem; font-weight: 700;
+      color: var(--text); min-height: 52px; display: flex; align-items: center;
+      justify-content: center; gap: 4px; letter-spacing: 0.04em;
     }
-    .built-word .phoneme-part {
-      transition: all 0.3s ease;
-    }
-    .built-word .phoneme-part.found {
-      color: var(--accent-cool);
-    }
-    .built-word .phoneme-part.missing {
-      color: #ccc;
-      font-style: italic;
-    }
+    .built-word .phoneme-part { transition: all 0.3s ease; }
+    .built-word .phoneme-part.found { color: var(--accent-cool); }
+    .scan-hint { color: var(--text-muted); font-size: 0.9rem; }
 
     .speak-btn {
-      margin-top: 12px;
-      padding: 10px 24px;
-      background: var(--accent-warm);
-      color: #fff;
-      border: none;
-      border-radius: 100px;
-      font-family: var(--font-display);
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      pointer-events: auto;
-      display: none;
-      margin-left: auto;
-      margin-right: auto;
+      margin-top: 12px; padding: 10px 24px; background: var(--accent-warm); color: #fff;
+      border: none; border-radius: 100px; font-family: var(--font-display); font-size: 1rem;
+      font-weight: 600; cursor: pointer; display: none; margin-left: auto; margin-right: auto;
     }
-    .speak-btn.visible {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .speak-btn.visible { display: inline-flex; align-items: center; gap: 8px; }
 
-    .scan-hint {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* status dots */
-    .tracker-status {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 10px;
-    }
-    .tracker-dot {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
+    .tracker-status { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 10px; }
+    .tracker-dot { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: var(--text-muted); }
     .tracker-dot .dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: #ddd;
-      transition: background 0.3s;
+      width: 10px; height: 10px; border-radius: 50%; background: #ddd; transition: background 0.3s;
     }
     .tracker-dot .dot.active {
-      background: var(--accent-cool);
-      box-shadow: 0 0 8px rgba(78,205,196,0.6);
+      background: var(--accent-cool); box-shadow: 0 0 8px rgba(78,205,196,0.6);
     }
 
-    /* ═══════════════════════════════════════════
-       PRINT CARDS SCREEN
-    ═══════════════════════════════════════════ */
-    .print-screen .setup-body {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .card-print-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .print-card {
-      aspect-ratio: 3/4;
-      background: #fff;
-      border: 3px solid var(--text);
-      border-radius: var(--radius-sm);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .print-card-phoneme {
-      font-family: var(--font-display);
-      font-size: 3.5rem;
-      font-weight: 800;
-      color: var(--text);
-    }
-    .print-card-label {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      margin-top: 8px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    /* decorative corners for visual richness / feature point variety */
-    .print-card::before {
-      content: '';
-      position: absolute;
-      top: 8px; left: 8px;
-      width: 40px; height: 40px;
-      border-top: 4px solid var(--accent-cool);
-      border-left: 4px solid var(--accent-cool);
-      border-radius: 4px 0 0 0;
-    }
-    .print-card::after {
-      content: '';
-      position: absolute;
-      bottom: 8px; right: 8px;
-      width: 40px; height: 40px;
-      border-bottom: 4px solid var(--accent-warm);
-      border-right: 4px solid var(--accent-warm);
-      border-radius: 0 0 4px 0;
-    }
-    /* unique patterns for better tracking */
-    .print-card .card-pattern {
-      position: absolute;
-      width: 100%; height: 100%;
-      top: 0; left: 0;
-      pointer-events: none;
-      opacity: 0.06;
-    }
-
-    /* loading overlay for AR */
     .ar-loading {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      flex-direction: column;
-      gap: 20px;
+      position: fixed; inset: 0; background: rgba(0,0,0,0.85);
+      display: none; align-items: center; justify-content: center;
+      z-index: 100; flex-direction: column; gap: 20px;
     }
-    .ar-loading.visible {
-      display: flex;
-    }
-    .ar-loading-text {
-      color: #fff;
-      font-family: var(--font-display);
-      font-size: 1.2rem;
-    }
+    .ar-loading.visible { display: flex; }
+    .ar-loading-text { color: #fff; font-family: var(--font-display); font-size: 1.2rem; }
     .spinner {
-      width: 48px; height: 48px;
-      border: 4px solid rgba(255,255,255,0.2);
-      border-top-color: var(--accent-cool);
-      border-radius: 50%;
-      animation: spin 0.8s linear infinite;
+      width: 48px; height: 48px; border: 4px solid rgba(255,255,255,0.2);
+      border-top-color: var(--accent-cool); border-radius: 50%; animation: spin 0.8s linear infinite;
     }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* custom phoneme input */
-    .custom-input-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
-    .custom-input-row input {
-      flex: 1;
-      padding: 12px 16px;
-      border: 2px solid rgba(45,27,20,0.1);
-      border-radius: var(--radius-sm);
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      font-weight: 600;
-      background: var(--bg-card);
-      outline: none;
-    }
-    .custom-input-row input:focus {
-      border-color: var(--accent-cool);
-    }
-
-    /* ═══════════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════════ */
+    /* ── RESPONSIVE ── */
     @media (max-width: 400px) {
       .logo-text { font-size: 1.9rem; }
       .home h2 { font-size: 1.2rem; }
       .phoneme-grid { grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); }
-    }
-
-    @media print {
-      .setup-header, .home, .scanner, .info-banner, .compile-section,
-      .phoneme-library, .selected-preview, .step-label { display: none !important; }
-      .card-print-grid { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-      .print-card { break-inside: avoid; border: 3px solid #000; }
+      .card-item { flex-direction: column; text-align: center; }
+      .card-item-actions { justify-content: center; }
     }
   </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- ════════════════════════════════════════
-       SCREEN 1: HOME
-  ════════════════════════════════════════ -->
+  <!-- ══════ HOME ══════ -->
   <div id="homeScreen" class="screen home active">
-    <div class="float-shape"></div>
-    <div class="float-shape"></div>
-    <div class="float-shape"></div>
-    <div class="float-shape"></div>
-
+    <div class="float-shape"></div><div class="float-shape"></div>
+    <div class="float-shape"></div><div class="float-shape"></div>
     <div class="home-content">
       <div class="logo-mark">
         <svg viewBox="0 0 48 48" fill="none">
@@ -751,27 +389,24 @@
         <div class="logo-text">Phoneme<span>AR</span></div>
       </div>
       <h2>Scan phoneme cards with your camera to build and hear words come alive!</h2>
-
       <div class="home-actions">
         <button class="btn btn-primary" onclick="showScreen('setupScreen')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
           Create Phoneme Cards
         </button>
-        <button class="btn btn-secondary" onclick="showScreen('printScreen')" id="printCardsBtn" style="display:none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-          View / Print Cards
+        <button class="btn btn-secondary" onclick="showScreen('cardsScreen')" id="viewCardsBtn" style="display:none">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          View / Download Cards
         </button>
         <button class="btn btn-secondary" onclick="launchAR()" id="scanBtn" style="display:none">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
           Scan &amp; Build Words
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ════════════════════════════════════════
-       SCREEN 2: SETUP / COMPILE
-  ════════════════════════════════════════ -->
+  <!-- ══════ SETUP / COMPILE ══════ -->
   <div id="setupScreen" class="screen setup">
     <div class="setup-header">
       <button class="back-btn" onclick="showScreen('homeScreen')">
@@ -779,15 +414,12 @@
       </button>
       <h1>Create Phoneme Cards</h1>
     </div>
-
     <div class="setup-body">
       <div class="info-banner">
-        <strong>How it works:</strong> Choose 2 or more phonemes below. We'll generate printable marker cards and compile them for AR tracking. Then point your camera at the cards to build words!
+        <strong>How it works:</strong> Choose 2 or more phonemes below. We'll generate unique marker images and compile them for AR tracking. Then download the cards, print them (or show on a second screen), and scan with your phone!
       </div>
 
-      <!-- Step 1: Pick phonemes -->
       <div class="step-label"><span class="step-num">1</span> Pick your phonemes</div>
-
       <div class="phoneme-tabs">
         <button class="phoneme-tab active" data-cat="consonants">Consonants</button>
         <button class="phoneme-tab" data-cat="vowels">Short Vowels</button>
@@ -795,17 +427,14 @@
         <button class="phoneme-tab" data-cat="digraphs">Digraphs</button>
         <button class="phoneme-tab" data-cat="blends">Blends</button>
       </div>
-
       <div class="phoneme-library">
         <div class="phoneme-grid" id="phonemeGrid"></div>
       </div>
-
       <div class="custom-input-row">
         <input type="text" id="customPhoneme" placeholder="Or type a custom phoneme…" maxlength="4">
         <button class="btn btn-small btn-secondary" onclick="addCustomPhoneme()">Add</button>
       </div>
 
-      <!-- Selected preview -->
       <div class="selected-preview">
         <div class="selected-preview-label">Selected Phonemes (in order)</div>
         <div class="selected-phonemes" id="selectedPhonemes">
@@ -813,9 +442,7 @@
         </div>
       </div>
 
-      <!-- Step 2: Compile -->
       <div class="step-label"><span class="step-num">2</span> Generate AR markers</div>
-
       <div class="compile-section">
         <button class="btn btn-primary" id="compileBtn" onclick="compileTargets()" disabled>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -829,38 +456,60 @@
     </div>
   </div>
 
-  <!-- ════════════════════════════════════════
-       SCREEN 3: PRINT CARDS
-  ════════════════════════════════════════ -->
-  <div id="printScreen" class="screen setup print-screen">
+  <!-- ══════ CARDS SCREEN ══════ -->
+  <div id="cardsScreen" class="screen setup cards-screen">
     <div class="setup-header">
       <button class="back-btn" onclick="showScreen('homeScreen')">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       </button>
-      <h1>Print Your Cards</h1>
+      <h1>Your Phoneme Cards</h1>
     </div>
     <div class="setup-body">
       <div class="info-banner">
-        Print these cards (or display on a second screen) and use them as AR markers. Each card has a unique pattern so the camera can tell them apart. <strong>Tip:</strong> Print at a good size — at least 8cm wide works best.
+        <strong>Download</strong> each card individually as a PNG to print, or use <strong>Display on Screen</strong> to show cards full-screen on your laptop while you scan with your phone. Each card has a unique pattern so the camera can tell them apart.
       </div>
-      <div class="card-print-grid" id="printGrid"></div>
-      <button class="btn btn-primary" onclick="window.print()" style="margin-bottom:16px">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        Print Cards
-      </button>
-      <button class="btn btn-secondary" onclick="launchAR()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-        Start Scanning
-      </button>
+
+      <div class="cards-actions">
+        <button class="btn btn-primary" onclick="downloadAllCards()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download All Cards
+        </button>
+        <button class="btn btn-accent" onclick="openDisplayMode(0)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Display on Screen
+        </button>
+        <button class="btn btn-secondary" onclick="launchAR()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          Start Scanning
+        </button>
+      </div>
+
+      <div id="cardsList"></div>
     </div>
   </div>
 
-  <!-- ════════════════════════════════════════
-       SCREEN 4: AR SCANNER
-  ════════════════════════════════════════ -->
+  <!-- ══════ DISPLAY MODE OVERLAY ══════ -->
+  <div class="display-overlay" id="displayOverlay">
+    <div class="display-overlay-top">
+      <button class="display-nav-btn" id="displayPrev" onclick="displayNav(-1)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <span class="display-counter" id="displayCounter">1 / 3</span>
+      <button class="display-nav-btn" id="displayNext" onclick="displayNav(1)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+    <img class="display-card-img" id="displayCardImg" src="" alt="Phoneme card">
+    <div class="display-phoneme-label" id="displayPhonemeLabel"></div>
+    <div class="display-hint">Show this screen to your phone's camera to scan it. Use ← → arrows to switch between cards.</div>
+    <button class="btn btn-small btn-secondary" onclick="closeDisplayMode()" style="position:absolute;bottom:24px;">
+      Close Display Mode
+    </button>
+  </div>
+
+  <!-- ══════ AR SCANNER ══════ -->
   <div id="scannerScreen" class="screen scanner">
     <div id="ar-container"></div>
-
     <div class="ar-overlay">
       <div class="ar-top-bar">
         <button class="ar-back-btn" onclick="stopAR()">
@@ -868,7 +517,6 @@
         </button>
       </div>
     </div>
-
     <div class="ar-word-display">
       <div class="word-card">
         <div class="word-card-label">Built Word</div>
@@ -882,7 +530,6 @@
         </button>
       </div>
     </div>
-
     <div class="ar-loading" id="arLoading">
       <div class="spinner"></div>
       <div class="ar-loading-text">Starting camera &amp; loading AR engine…</div>
@@ -892,9 +539,9 @@
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════
-// PHONEME DATA
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════
 const PHONEME_SETS = {
   consonants: ['b','c','d','f','g','h','j','k','l','m','n','p','r','s','t','v','w','x','y','z'],
   vowels: ['a','e','i','o','u'],
@@ -903,42 +550,44 @@ const PHONEME_SETS = {
   blends: ['bl','br','cl','cr','dr','fl','fr','gl','gr','pl','pr','sc','sk','sl','sm','sn','sp','st','sw','tr']
 };
 
+const COLORS = ['#4ECDC4','#FF6B35','#A78BFA','#FF8AAE','#FFE66D','#34D399','#F472B6','#818CF8','#FB923C','#38BDF8'];
+
 let selectedPhonemes = [];
 let compiledMindFile = null;
+let generatedCardDataURLs = [];
 let arScene = null;
 let trackedTargets = new Map();
+let displayIndex = 0;
 
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════
 // NAVIGATION
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-
-  if (id === 'printScreen') renderPrintCards();
+  if (id === 'cardsScreen') renderCardsList();
   if (id === 'homeScreen') {
-    document.getElementById('printCardsBtn').style.display = compiledMindFile ? 'flex' : 'none';
+    document.getElementById('viewCardsBtn').style.display = compiledMindFile ? 'flex' : 'none';
     document.getElementById('scanBtn').style.display = compiledMindFile ? 'flex' : 'none';
   }
 }
 
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════
 // PHONEME GRID
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════
 function renderPhonemeGrid(category) {
   const grid = document.getElementById('phonemeGrid');
   const phonemes = PHONEME_SETS[category] || [];
   grid.innerHTML = phonemes.map(p => {
     const idx = selectedPhonemes.indexOf(p);
     const sel = idx > -1 ? 'selected' : '';
-    return `<div class="phoneme-chip ${sel}" onclick="togglePhoneme('${p}', this)">
+    return `<div class="phoneme-chip ${sel}" onclick="togglePhoneme('${p}')">
       ${p}
       <span class="chip-order">${idx > -1 ? idx + 1 : ''}</span>
     </div>`;
   }).join('');
 }
 
-// Tab switching
 document.querySelectorAll('.phoneme-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.phoneme-tab').forEach(t => t.classList.remove('active'));
@@ -949,14 +598,9 @@ document.querySelectorAll('.phoneme-tab').forEach(tab => {
 
 function togglePhoneme(p) {
   const idx = selectedPhonemes.indexOf(p);
-  if (idx > -1) {
-    selectedPhonemes.splice(idx, 1);
-  } else {
-    if (selectedPhonemes.length >= 10) return; // max 10
-    selectedPhonemes.push(p);
-  }
+  if (idx > -1) selectedPhonemes.splice(idx, 1);
+  else if (selectedPhonemes.length < 10) selectedPhonemes.push(p);
   updateSelectedUI();
-  // re-render current tab
   const activeTab = document.querySelector('.phoneme-tab.active');
   if (activeTab) renderPhonemeGrid(activeTab.dataset.cat);
 }
@@ -983,7 +627,6 @@ function removeSelected(p) {
 function updateSelectedUI() {
   const container = document.getElementById('selectedPhonemes');
   const btn = document.getElementById('compileBtn');
-
   if (selectedPhonemes.length === 0) {
     container.innerHTML = '<span class="empty-hint">Tap phonemes above to select them</span>';
     btn.disabled = true;
@@ -998,116 +641,94 @@ function updateSelectedUI() {
   }
 }
 
-// Init first tab
 renderPhonemeGrid('consonants');
 
-// ═══════════════════════════════════════════════════
-// GENERATE CARD IMAGES (Canvas-based, unique patterns)
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════
+// GENERATE CARD IMAGE (Canvas → PNG)
+// ═══════════════════════════════════════════════
 function generateCardImage(phoneme, index) {
   return new Promise(resolve => {
     const size = 512;
     const canvas = document.createElement('canvas');
-    canvas.width = size;
-    canvas.height = size;
+    canvas.width = size; canvas.height = size;
     const ctx = canvas.getContext('2d');
 
-    // White background
     ctx.fillStyle = '#FFFFFF';
     ctx.fillRect(0, 0, size, size);
 
-    // Border
-    ctx.strokeStyle = '#1a1a1a';
-    ctx.lineWidth = 6;
+    ctx.strokeStyle = '#1a1a1a'; ctx.lineWidth = 6;
     ctx.strokeRect(8, 8, size - 16, size - 16);
 
-    // Unique corner decorations (helps with feature tracking)
-    const colors = ['#4ECDC4', '#FF6B35', '#A78BFA', '#FF8AAE', '#FFE66D', '#34D399', '#F472B6', '#818CF8', '#FB923C', '#38BDF8'];
-    const color1 = colors[index % colors.length];
-    const color2 = colors[(index + 3) % colors.length];
+    const c1 = COLORS[index % COLORS.length];
+    const c2 = COLORS[(index + 3) % COLORS.length];
 
-    // Top-left corner
-    ctx.strokeStyle = color1;
-    ctx.lineWidth = 5;
-    ctx.beginPath();
-    ctx.moveTo(20, 60);
-    ctx.lineTo(20, 20);
-    ctx.lineTo(60, 20);
-    ctx.stroke();
+    // All four corners
+    ctx.strokeStyle = c1; ctx.lineWidth = 5;
+    ctx.beginPath(); ctx.moveTo(20, 60); ctx.lineTo(20, 20); ctx.lineTo(60, 20); ctx.stroke();
+    ctx.strokeStyle = c2;
+    ctx.beginPath(); ctx.moveTo(size-20, size-60); ctx.lineTo(size-20, size-20); ctx.lineTo(size-60, size-20); ctx.stroke();
+    ctx.strokeStyle = c2; ctx.lineWidth = 4;
+    ctx.beginPath(); ctx.moveTo(size-60, 20); ctx.lineTo(size-20, 20); ctx.lineTo(size-20, 60); ctx.stroke();
+    ctx.strokeStyle = c1;
+    ctx.beginPath(); ctx.moveTo(20, size-60); ctx.lineTo(20, size-20); ctx.lineTo(60, size-20); ctx.stroke();
 
-    // Bottom-right corner
-    ctx.strokeStyle = color2;
-    ctx.beginPath();
-    ctx.moveTo(size - 20, size - 60);
-    ctx.lineTo(size - 20, size - 20);
-    ctx.lineTo(size - 60, size - 20);
-    ctx.stroke();
-
-    // Unique geometric pattern background (seed-based on index for uniqueness)
-    ctx.globalAlpha = 0.08;
+    // Unique geometric pattern
+    ctx.globalAlpha = 0.1;
     const seed = index * 37 + 7;
-    for (let i = 0; i < 20; i++) {
-      const x = ((seed * (i + 1) * 13) % (size - 60)) + 30;
-      const y = ((seed * (i + 1) * 17) % (size - 60)) + 30;
-      const r = ((seed * (i + 1) * 7) % 20) + 5;
-      ctx.fillStyle = i % 2 === 0 ? color1 : color2;
-      if (i % 3 === 0) {
-        ctx.fillRect(x - r, y - r, r * 2, r * 2);
-      } else if (i % 3 === 1) {
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fill();
-      } else {
-        ctx.beginPath();
-        ctx.moveTo(x, y - r);
-        ctx.lineTo(x + r, y + r);
-        ctx.lineTo(x - r, y + r);
-        ctx.closePath();
-        ctx.fill();
-      }
+    for (let i = 0; i < 25; i++) {
+      const x = ((seed * (i + 1) * 13) % (size - 80)) + 40;
+      const y = ((seed * (i + 1) * 17) % (size - 80)) + 40;
+      const r = ((seed * (i + 1) * 7) % 20) + 4;
+      ctx.fillStyle = i % 2 === 0 ? c1 : c2;
+      if (i % 3 === 0) ctx.fillRect(x - r, y - r, r * 2, r * 2);
+      else if (i % 3 === 1) { ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); }
+      else { ctx.beginPath(); ctx.moveTo(x, y-r); ctx.lineTo(x+r, y+r); ctx.lineTo(x-r, y+r); ctx.closePath(); ctx.fill(); }
     }
     ctx.globalAlpha = 1;
 
-    // Unique stripe pattern at edges for extra features
+    // Edge stripes
     const patternOffset = (index * 23) % 6;
     for (let i = 0; i < 8; i++) {
       const px = 30 + i * 58;
-      ctx.fillStyle = (i + patternOffset) % 2 === 0 ? color1 : color2;
-      ctx.globalAlpha = 0.3;
-      ctx.fillRect(px, size - 38, 24, 12);
-      ctx.fillRect(px, 22, 24, 12);
+      ctx.fillStyle = (i + patternOffset) % 2 === 0 ? c1 : c2;
+      ctx.globalAlpha = 0.35;
+      ctx.fillRect(px, size - 40, 28, 14);
+      ctx.fillRect(px, 22, 28, 14);
+      ctx.globalAlpha = 1;
+    }
+    for (let i = 0; i < 6; i++) {
+      const py = 50 + i * 75;
+      ctx.fillStyle = (i + patternOffset) % 2 === 0 ? c2 : c1;
+      ctx.globalAlpha = 0.25;
+      ctx.fillRect(18, py, 14, 28);
+      ctx.fillRect(size - 32, py, 14, 28);
       ctx.globalAlpha = 1;
     }
 
-    // Index number top-right (small, for user reference)
-    ctx.fillStyle = '#aaa';
-    ctx.font = '600 24px sans-serif';
-    ctx.textAlign = 'right';
-    ctx.fillText(`#${index + 1}`, size - 28, 44);
+    // Index label
+    ctx.fillStyle = '#aaa'; ctx.font = '600 22px sans-serif';
+    ctx.textAlign = 'right'; ctx.fillText('#' + (index + 1), size - 30, 50);
 
-    // Main phoneme text — large, bold, centered
+    // Main phoneme
     ctx.fillStyle = '#1a1a1a';
-    ctx.font = `800 ${phoneme.length > 2 ? 140 : 180}px sans-serif`;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
+    ctx.font = '800 ' + (phoneme.length > 2 ? 130 : 170) + 'px sans-serif';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
     ctx.fillText(phoneme, size / 2, size / 2);
 
-    // Small label at bottom
-    ctx.fillStyle = '#888';
-    ctx.font = '500 20px sans-serif';
-    ctx.textBaseline = 'bottom';
-    ctx.fillText('PhonemeAR', size / 2, size - 44);
+    // Label
+    ctx.fillStyle = '#888'; ctx.font = '500 18px sans-serif';
+    ctx.textBaseline = 'bottom'; ctx.fillText('PhonemeAR', size / 2, size - 48);
 
-    // Convert to image
+    const dataUrl = canvas.toDataURL('image/png');
     const img = new Image();
-    img.onload = () => resolve(img);
-    img.src = canvas.toDataURL('image/png');
+    img.onload = () => resolve({ img, dataUrl });
+    img.src = dataUrl;
   });
 }
 
-// ═══════════════════════════════════════════════════
-// COMPILE TARGETS (.mind file)
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════
+// COMPILE
+// ═══════════════════════════════════════════════
 async function compileTargets() {
   if (selectedPhonemes.length < 2) return;
 
@@ -1121,44 +742,37 @@ async function compileTargets() {
   fillEl.style.width = '5%';
   textEl.textContent = 'Generating card images…';
 
-  // Generate images
   const images = [];
+  generatedCardDataURLs = [];
+
   for (let i = 0; i < selectedPhonemes.length; i++) {
-    const img = await generateCardImage(selectedPhonemes[i], i);
+    const { img, dataUrl } = await generateCardImage(selectedPhonemes[i], i);
     images.push(img);
-    const pct = ((i + 1) / selectedPhonemes.length) * 40;
-    fillEl.style.width = pct + '%';
-    textEl.textContent = `Generated card ${i + 1} of ${selectedPhonemes.length}…`;
+    generatedCardDataURLs.push(dataUrl);
+    fillEl.style.width = ((i + 1) / selectedPhonemes.length * 40) + '%';
+    textEl.textContent = 'Generated card ' + (i + 1) + ' of ' + selectedPhonemes.length + '…';
   }
 
-  // Compile with MindAR compiler
   textEl.textContent = 'Compiling AR markers (this may take a moment)…';
   fillEl.style.width = '50%';
 
   try {
-    // Use MindAR's in-browser compiler
     const compiler = new MINDAR.IMAGE.Compiler();
-
     await compiler.compileImageTargets(images, (progress) => {
-      const pct = 50 + progress * 50;
-      fillEl.style.width = pct + '%';
-      textEl.textContent = `Compiling… ${Math.round(progress * 100)}%`;
+      fillEl.style.width = (50 + progress * 50) + '%';
+      textEl.textContent = 'Compiling… ' + Math.round(progress * 100) + '%';
     });
 
-    const exportedBuffer = await compiler.exportData();
-    compiledMindFile = exportedBuffer;
+    compiledMindFile = await compiler.exportData();
 
     fillEl.style.width = '100%';
     textEl.textContent = 'Done! Your markers are ready.';
     btn.disabled = false;
 
-    // Show buttons on home
-    document.getElementById('printCardsBtn').style.display = 'flex';
+    document.getElementById('viewCardsBtn').style.display = 'flex';
     document.getElementById('scanBtn').style.display = 'flex';
 
-    // Auto-navigate to print
-    setTimeout(() => showScreen('printScreen'), 800);
-
+    setTimeout(() => showScreen('cardsScreen'), 800);
   } catch (err) {
     console.error('Compile error:', err);
     textEl.textContent = 'Error compiling. Please try again or use fewer phonemes.';
@@ -1166,96 +780,129 @@ async function compileTargets() {
   }
 }
 
-// ═══════════════════════════════════════════════════
-// PRINT CARDS
-// ═══════════════════════════════════════════════════
-function renderPrintCards() {
-  const grid = document.getElementById('printGrid');
-  grid.innerHTML = '';
+// ═══════════════════════════════════════════════
+// CARDS LIST
+// ═══════════════════════════════════════════════
+function renderCardsList() {
+  const list = document.getElementById('cardsList');
+  list.innerHTML = '';
 
   selectedPhonemes.forEach((p, i) => {
-    const card = document.createElement('div');
-    card.className = 'print-card';
-
-    // Unique pattern SVG
-    const colors = ['#4ECDC4', '#FF6B35', '#A78BFA', '#FF8AAE', '#FFE66D', '#34D399', '#F472B6', '#818CF8', '#FB923C', '#38BDF8'];
-    const c1 = colors[i % colors.length];
-    const c2 = colors[(i + 3) % colors.length];
-    const seed = i * 37 + 7;
-
-    let patternSvg = '<svg class="card-pattern" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">';
-    for (let j = 0; j < 15; j++) {
-      const x = ((seed * (j + 1) * 13) % 180) + 10;
-      const y = ((seed * (j + 1) * 17) % 180) + 10;
-      const r = ((seed * (j + 1) * 7) % 15) + 3;
-      const fill = j % 2 === 0 ? c1 : c2;
-      if (j % 3 === 0) patternSvg += `<rect x="${x - r}" y="${y - r}" width="${r * 2}" height="${r * 2}" fill="${fill}"/>`;
-      else if (j % 3 === 1) patternSvg += `<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}"/>`;
-      else patternSvg += `<polygon points="${x},${y - r} ${x + r},${y + r} ${x - r},${y + r}" fill="${fill}"/>`;
-    }
-    patternSvg += '</svg>';
-
-    card.innerHTML = `
-      ${patternSvg}
-      <div class="print-card-phoneme" style="color: ${c1}">${p}</div>
-      <div class="print-card-label">Card #${i + 1}</div>
-    `;
-    grid.appendChild(card);
+    const dataUrl = generatedCardDataURLs[i];
+    const c1 = COLORS[i % COLORS.length];
+    const item = document.createElement('div');
+    item.className = 'card-item';
+    item.innerHTML =
+      '<div class="card-item-preview"><img src="' + dataUrl + '" alt="Card for ' + p + '"></div>' +
+      '<div class="card-item-info">' +
+        '<h3 style="color:' + c1 + '">' + p + '</h3>' +
+        '<p>Card #' + (i + 1) + ' of ' + selectedPhonemes.length + '</p>' +
+        '<div class="card-item-actions">' +
+          '<button class="btn-icon" onclick="downloadCard(' + i + ')">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>' +
+            'Download PNG' +
+          '</button>' +
+          '<button class="btn-icon" onclick="openDisplayMode(' + i + ')">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>' +
+            'Show on Screen' +
+          '</button>' +
+        '</div>' +
+      '</div>';
+    list.appendChild(item);
   });
 }
 
-// ═══════════════════════════════════════════════════
-// AR SCANNER (MindAR + A-Frame)
-// ═══════════════════════════════════════════════════
+function downloadCard(index) {
+  const phoneme = selectedPhonemes[index];
+  const dataUrl = generatedCardDataURLs[index];
+  const a = document.createElement('a');
+  a.href = dataUrl;
+  a.download = 'phoneme-card-' + (index + 1) + '-' + phoneme + '.png';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function downloadAllCards() {
+  selectedPhonemes.forEach(function(_, i) {
+    setTimeout(function() { downloadCard(i); }, i * 400);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// DISPLAY MODE
+// ═══════════════════════════════════════════════
+function openDisplayMode(index) {
+  displayIndex = index;
+  updateDisplayMode();
+  document.getElementById('displayOverlay').classList.add('visible');
+}
+
+function closeDisplayMode() {
+  document.getElementById('displayOverlay').classList.remove('visible');
+}
+
+function displayNav(dir) {
+  displayIndex = Math.max(0, Math.min(selectedPhonemes.length - 1, displayIndex + dir));
+  updateDisplayMode();
+}
+
+function updateDisplayMode() {
+  document.getElementById('displayCardImg').src = generatedCardDataURLs[displayIndex];
+  document.getElementById('displayPhonemeLabel').textContent = selectedPhonemes[displayIndex];
+  document.getElementById('displayCounter').textContent = (displayIndex + 1) + ' / ' + selectedPhonemes.length;
+  document.getElementById('displayPrev').disabled = displayIndex === 0;
+  document.getElementById('displayNext').disabled = displayIndex === selectedPhonemes.length - 1;
+}
+
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('displayOverlay').classList.contains('visible')) return;
+  if (e.key === 'ArrowLeft') displayNav(-1);
+  else if (e.key === 'ArrowRight') displayNav(1);
+  else if (e.key === 'Escape') closeDisplayMode();
+});
+
+// ═══════════════════════════════════════════════
+// AR SCANNER
+// ═══════════════════════════════════════════════
 function launchAR() {
-  if (!compiledMindFile) {
-    alert('Please compile your phoneme cards first!');
-    return;
-  }
+  if (!compiledMindFile) { alert('Please compile your phoneme cards first!'); return; }
 
   showScreen('scannerScreen');
-  const loading = document.getElementById('arLoading');
-  loading.classList.add('visible');
+  document.getElementById('arLoading').classList.add('visible');
 
-  // Create a blob URL for the .mind file
   const blob = new Blob([compiledMindFile]);
   const mindUrl = URL.createObjectURL(blob);
-
   const container = document.getElementById('ar-container');
   container.innerHTML = '';
 
-  // Build A-Frame scene dynamically
   const scene = document.createElement('a-scene');
-  scene.setAttribute('mindar-image', `imageTargetSrc: ${mindUrl}; maxTrack: ${Math.min(selectedPhonemes.length, 4)}; filterMinCF: 0.001; filterBeta: 100; missTolerance: 10; warmupTolerance: 3`);
+  scene.setAttribute('mindar-image', 'imageTargetSrc: ' + mindUrl + '; maxTrack: ' + Math.min(selectedPhonemes.length, 4) + '; filterMinCF: 0.001; filterBeta: 100; missTolerance: 10; warmupTolerance: 3');
   scene.setAttribute('color-space', 'sRGB');
   scene.setAttribute('renderer', 'colorManagement: true, physicallyCorrectLights');
   scene.setAttribute('vr-mode-ui', 'enabled: false');
   scene.setAttribute('device-orientation-permission-ui', 'enabled: false');
 
-  const camera = document.createElement('a-camera');
+  var camera = document.createElement('a-camera');
   camera.setAttribute('position', '0 0 0');
   camera.setAttribute('look-controls', 'enabled: false');
   scene.appendChild(camera);
 
-  // Create an entity for each phoneme target
-  selectedPhonemes.forEach((phoneme, idx) => {
-    const entity = document.createElement('a-entity');
-    entity.setAttribute('mindar-image-target', `targetIndex: ${idx}`);
-    entity.id = `target-${idx}`;
+  selectedPhonemes.forEach(function(phoneme, idx) {
+    var entity = document.createElement('a-entity');
+    entity.setAttribute('mindar-image-target', 'targetIndex: ' + idx);
+    entity.id = 'target-' + idx;
 
-    // Show the phoneme as colored text above the marker
-    const text = document.createElement('a-text');
-    const colors = ['#4ECDC4', '#FF6B35', '#A78BFA', '#FF8AAE', '#FFE66D', '#34D399', '#F472B6', '#818CF8', '#FB923C', '#38BDF8'];
+    var text = document.createElement('a-text');
     text.setAttribute('value', phoneme.toUpperCase());
-    text.setAttribute('color', colors[idx % colors.length]);
+    text.setAttribute('color', COLORS[idx % COLORS.length]);
     text.setAttribute('align', 'center');
-    text.setAttribute('width', 2);
+    text.setAttribute('width', '2');
     text.setAttribute('position', '0 0 0.01');
     text.setAttribute('font', 'https://cdn.aframe.io/fonts/Exo2Bold.fnt');
     entity.appendChild(text);
 
-    // Background plane
-    const plane = document.createElement('a-plane');
+    var plane = document.createElement('a-plane');
     plane.setAttribute('color', '#ffffff');
     plane.setAttribute('opacity', '0.85');
     plane.setAttribute('width', '0.8');
@@ -1263,15 +910,8 @@ function launchAR() {
     plane.setAttribute('position', '0 0 0');
     entity.appendChild(plane);
 
-    // Track found/lost events
-    entity.addEventListener('targetFound', () => {
-      trackedTargets.set(idx, phoneme);
-      updateWordDisplay();
-    });
-    entity.addEventListener('targetLost', () => {
-      trackedTargets.delete(idx);
-      updateWordDisplay();
-    });
+    entity.addEventListener('targetFound', function() { trackedTargets.set(idx, phoneme); updateWordDisplay(); });
+    entity.addEventListener('targetLost', function() { trackedTargets.delete(idx); updateWordDisplay(); });
 
     scene.appendChild(entity);
   });
@@ -1279,18 +919,12 @@ function launchAR() {
   container.appendChild(scene);
   arScene = scene;
 
-  // Build tracker status dots
-  const statusEl = document.getElementById('trackerStatus');
-  statusEl.innerHTML = selectedPhonemes.map((p, i) =>
-    `<div class="tracker-dot"><span class="dot" id="dot-${i}"></span>${p}</div>`
-  ).join('');
+  document.getElementById('trackerStatus').innerHTML = selectedPhonemes.map(function(p, i) {
+    return '<div class="tracker-dot"><span class="dot" id="dot-' + i + '"></span>' + p + '</div>';
+  }).join('');
 
-  // Hide loading when scene is ready
-  scene.addEventListener('loaded', () => {
-    loading.classList.remove('visible');
-  });
-  // Fallback timeout
-  setTimeout(() => loading.classList.remove('visible'), 8000);
+  scene.addEventListener('loaded', function() { document.getElementById('arLoading').classList.remove('visible'); });
+  setTimeout(function() { document.getElementById('arLoading').classList.remove('visible'); }, 8000);
 
   trackedTargets.clear();
   updateWordDisplay();
@@ -1298,19 +932,15 @@ function launchAR() {
 
 function stopAR() {
   if (arScene) {
-    // Clean up
-    const container = document.getElementById('ar-container');
+    var container = document.getElementById('ar-container');
     try {
-      const sceneEl = container.querySelector('a-scene');
+      var sceneEl = container.querySelector('a-scene');
       if (sceneEl) {
-        // Stop MindAR
-        const system = sceneEl.systems && sceneEl.systems['mindar-image-system'];
+        var system = sceneEl.systems && sceneEl.systems['mindar-image-system'];
         if (system && system.stop) system.stop();
         sceneEl.parentNode.removeChild(sceneEl);
       }
-    } catch (e) {
-      console.warn('Cleanup error:', e);
-    }
+    } catch (e) { console.warn('Cleanup error:', e); }
     container.innerHTML = '';
     arScene = null;
   }
@@ -1318,19 +948,16 @@ function stopAR() {
   showScreen('homeScreen');
 }
 
-// ═══════════════════════════════════════════════════
-// WORD DISPLAY + TEXT-TO-SPEECH
-// ═══════════════════════════════════════════════════
+// ═══════════════════════════════════════════════
+// WORD DISPLAY + SPEECH
+// ═══════════════════════════════════════════════
 function updateWordDisplay() {
-  const wordEl = document.getElementById('builtWord');
-  const speakBtnEl = document.getElementById('speakBtn');
+  var wordEl = document.getElementById('builtWord');
+  var speakBtnEl = document.getElementById('speakBtn');
 
-  // Update status dots
-  selectedPhonemes.forEach((p, i) => {
-    const dot = document.getElementById(`dot-${i}`);
-    if (dot) {
-      dot.classList.toggle('active', trackedTargets.has(i));
-    }
+  selectedPhonemes.forEach(function(p, i) {
+    var dot = document.getElementById('dot-' + i);
+    if (dot) dot.classList.toggle('active', trackedTargets.has(i));
   });
 
   if (trackedTargets.size === 0) {
@@ -1339,60 +966,43 @@ function updateWordDisplay() {
     return;
   }
 
-  // Build word from tracked targets in order of their index
-  const sortedEntries = [...trackedTargets.entries()].sort((a, b) => a[0] - b[0]);
-  let html = '';
-  sortedEntries.forEach(([idx, phoneme]) => {
-    html += `<span class="phoneme-part found">${phoneme}</span>`;
-  });
-
-  wordEl.innerHTML = html;
+  var sortedEntries = Array.from(trackedTargets.entries()).sort(function(a, b) { return a[0] - b[0]; });
+  wordEl.innerHTML = sortedEntries.map(function(entry) {
+    return '<span class="phoneme-part found">' + entry[1] + '</span>';
+  }).join('');
   speakBtnEl.classList.add('visible');
 }
 
 function speakWord() {
   if (trackedTargets.size === 0) return;
-
-  const sortedEntries = [...trackedTargets.entries()].sort((a, b) => a[0] - b[0]);
-  const word = sortedEntries.map(([, p]) => p).join('');
+  var sortedEntries = Array.from(trackedTargets.entries()).sort(function(a, b) { return a[0] - b[0]; });
+  var word = sortedEntries.map(function(e) { return e[1]; }).join('');
 
   if ('speechSynthesis' in window) {
     window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(word);
-    utterance.rate = 0.75; // Slower for children
-    utterance.pitch = 1.1;
-    utterance.volume = 1;
+    var utterance = new SpeechSynthesisUtterance(word);
+    utterance.rate = 0.75; utterance.pitch = 1.1;
     window.speechSynthesis.speak(utterance);
 
-    // Also speak individual phonemes first with a pause
-    const phonemes = sortedEntries.map(([, p]) => p);
+    var phonemes = sortedEntries.map(function(e) { return e[1]; });
     if (phonemes.length > 1) {
-      setTimeout(() => {
-        phonemes.forEach((p, i) => {
-          setTimeout(() => {
-            const u = new SpeechSynthesisUtterance(p);
-            u.rate = 0.65;
-            u.pitch = 1.15;
+      setTimeout(function() {
+        phonemes.forEach(function(p, i) {
+          setTimeout(function() {
+            var u = new SpeechSynthesisUtterance(p);
+            u.rate = 0.65; u.pitch = 1.15;
             window.speechSynthesis.speak(u);
           }, i * 700);
         });
-        // Then speak the combined word
-        setTimeout(() => {
-          const combined = new SpeechSynthesisUtterance(word);
-          combined.rate = 0.7;
-          combined.pitch = 1.05;
+        setTimeout(function() {
+          var combined = new SpeechSynthesisUtterance(word);
+          combined.rate = 0.7; combined.pitch = 1.05;
           window.speechSynthesis.speak(combined);
         }, phonemes.length * 700 + 300);
       }, 1200);
     }
   }
 }
-
-// ═══════════════════════════════════════════════════
-// LOAD MindAR compiler module
-// ═══════════════════════════════════════════════════
-// The compiler is included in the prod bundle we already loaded.
-// We access it via window.MINDAR.IMAGE.Compiler
 </script>
 </body>
 </html>
